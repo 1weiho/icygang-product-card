@@ -24,7 +24,7 @@ const MyComponent = () => {
         {/* <img src={imgPreview} alt="preview" className="w-96 h-20" /> */}
         <div ref={divRef}>
           <div className="bg-white px-5 py-3 rounded-lg flex w-96 h-20 items-center space-x-4">
-            <img src="/test-logo.png" alt="Product" className="h-full" />
+            <img src="test-logo.png" alt="Product" className="h-full" />
             <span contentEditable="true">icygang logo</span>
           </div>
         </div>
