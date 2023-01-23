@@ -9,13 +9,12 @@ const MyComponent = () => {
     html2canvas(divRef.current, {
       backgroundColor: null,
     }).then((canvas) => {
-      canvas.toBlob((blob) => navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]))
-      // const dataURL = canvas.toDataURL()
+      const dataURL = canvas.toDataURL()
       // setImgPreview(dataURL)
-      // const link = document.createElement("a")
-      // link.download = "my-div.png"
-      // link.href = dataURL
-      // link.click()
+      const link = document.createElement("a")
+      link.download = "watermark.png"
+      link.href = dataURL
+      link.click()
     })
   }
 
@@ -30,7 +29,7 @@ const MyComponent = () => {
           </div>
         </div>
         <button onClick={handleExport} className="border-white border-2 rounded-lg px-3 py-2 text-white">
-          Export
+          下載
         </button>
       </div>
     </>
