@@ -27,10 +27,10 @@ const App = () => {
 
   return (
     <>
-      <div className="h-screen w-screen bg-slate-800 flex flex-col items-center space-y-8 pt-24">
+      <div className="h-screen w-screen bg-slate-100 dark:bg-slate-900 flex flex-col items-center space-y-8 pt-24">
         <div className="flex flex-col items-center space-y-2">
           <img src={process.env.PUBLIC_URL + "/logo512.png"} alt="icygang logo" className="h-16 w-16" />
-          <h1 className="text-2xl text-white tracking-widest">商品卡片產生器</h1>
+          <h1 className="text-2xl text-slate-900 dark:text-white tracking-widest">商品卡片產生器</h1>
         </div>
         <div className="p-3 border-gray-400 border-2 border-dashed rounded-lg w-80 h-28 flex justify-center items-center">
           {canvasPreview ? (
@@ -40,7 +40,7 @@ const App = () => {
           )}
         </div>
         <div ref={divRef}>
-          <div className="bg-white py-1 pl-3 rounded-lg flex min-w-fit max-w-xs h-20 items-center overflow-hidden">
+          <div className="bg-white dark:bg-slate-800 py-1 pl-3 rounded-lg flex min-w-fit max-w-xs h-20 items-center overflow-hidden">
             <input type="file" hidden ref={inputFileRef} accept="image/*" onChange={onImageChange} />
             <img
               src={imageUrl ? imageUrl : process.env.PUBLIC_URL + "/image/upload.png"}
@@ -49,10 +49,10 @@ const App = () => {
               onClick={onImageUploadBtnClick}
             />
             <div className="flex flex-col items-center w-full mx-6">
-              <span className="font-semibold tracking-wider">ICYGANG</span>
+              <span className="font-semibold tracking-wider text-slate-900 dark:text-white">ICYGANG</span>
               <span
                 contentEditable="true"
-                className="font-normal tracking-wider text-gray-700 text-center leading-4 break-all"
+                className="font-normal tracking-wider text-slate-500 dark:text-slate-400 text-center leading-4 break-all"
                 onClick={() => setInputText("")}
               >
                 {inputText}
@@ -62,7 +62,7 @@ const App = () => {
         </div>
         <button
           onClick={handleExport}
-          className="border-white border-2 rounded-lg px-3 py-2 text-white tracking-widest hover:bg-white hover:text-black duration-300"
+          className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
         >
           產生圖片
         </button>
