@@ -2,7 +2,7 @@
 
 # ICYGANG Product Card Image Generator
 
-This project is used to generate the product card for the instagram story posts.
+This project is used to generate the product card for the [ICYGANG](https://www.instagram.com/icygang_jewelry/)'s instagram story posts.
 
 ## Project Setup
 
