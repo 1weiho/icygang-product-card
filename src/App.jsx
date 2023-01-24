@@ -27,8 +27,12 @@ const App = () => {
 
   return (
     <>
-      <div className="h-screen w-screen bg-slate-800 flex flex-col justify-center items-center space-y-8">
-        <div className="p-3 border-gray-400 border-2 border-dashed rounded-lg w-96 h-28 flex justify-center items-center">
+      <div className="h-screen w-screen bg-slate-800 flex flex-col items-center space-y-8 pt-24">
+        <div className="flex flex-col items-center space-y-2">
+          <img src={process.env.PUBLIC_URL + "/logo512.png"} alt="icygang logo" className="h-16 w-16" />
+          <h1 className="text-2xl text-white tracking-widest">浮水印產生器</h1>
+        </div>
+        <div className="p-3 border-gray-400 border-2 border-dashed rounded-lg w-80 h-28 flex justify-center items-center">
           {canvasPreview ? (
             <img src={canvasPreview} alt="preview" className="max-h-full" />
           ) : (
@@ -36,7 +40,7 @@ const App = () => {
           )}
         </div>
         <div ref={divRef}>
-          <div className="bg-white px-5 py-3 rounded-lg flex w-96 h-20 items-center space-x-4">
+          <div className="bg-white px-5 py-3 rounded-lg flex w-80 h-20 items-center space-x-4">
             <input type="file" hidden ref={inputFileRef} accept="image/*" onChange={onImageChange} />
             <img
               src={imageUrl ? imageUrl : process.env.PUBLIC_URL + "/image/upload.png"}
