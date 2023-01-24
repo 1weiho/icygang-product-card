@@ -1,3 +1,5 @@
+![readme-banner](https://user-images.githubusercontent.com/75478661/214215780-4ce4e23e-aa4a-45b9-a308-0061f958f8a7.png)
+
 # ICYGANG Product Card Image Generator
 
 This project is used to generate the product card for the instagram story posts.
