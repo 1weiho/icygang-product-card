@@ -25,6 +25,7 @@ const App = () => {
       document.documentElement.classList.remove("dark")
     }
     setDarkTheme(!darkTheme)
+    handleExport()
   }
 
   const onImageChange = (e) => {
