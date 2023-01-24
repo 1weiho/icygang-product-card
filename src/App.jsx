@@ -5,6 +5,7 @@ const App = () => {
   const [imageUrl, setImageUrl] = useState("")
   const [canvasPreview, setCanvasPreview] = useState("")
   const [inputText, setInputText] = useState("⌨️ 點擊以編輯")
+  const [darkTheme, setDarkTheme] = useState(false)
   const divRef = useRef(null)
   const inputFileRef = useRef(null)
 
@@ -15,6 +16,15 @@ const App = () => {
       const dataURL = canvas.toDataURL()
       setCanvasPreview(dataURL)
     })
+  }
+
+  const handleTheme = () => {
+    if (darkTheme === false) {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+    setDarkTheme(!darkTheme)
   }
 
   const onImageChange = (e) => {
@@ -60,12 +70,20 @@ const App = () => {
             </div>
           </div>
         </div>
-        <button
-          onClick={handleExport}
-          className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
-        >
-          產生圖片
-        </button>
+        <div className="flex space-x-3">
+          <button
+            onClick={handleExport}
+            className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
+          >
+            產生圖片
+          </button>
+          <button
+            onClick={handleTheme}
+            className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
+          >
+            切換顏色
+          </button>
+        </div>
       </div>
     </>
   )
