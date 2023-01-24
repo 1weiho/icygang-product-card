@@ -1,7 +1,7 @@
 {
-  "name": "icygang-watermark",
+  "name": "icygang-product-card",
   "version": "0.1.0",
-  "homepage": "https://davidho0403.github.io/icygang-watermark",
+  "homepage": "https://davidho0403.github.io/icygang-product-card",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
