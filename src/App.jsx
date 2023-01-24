@@ -30,7 +30,7 @@ const App = () => {
       <div className="h-screen w-screen bg-slate-800 flex flex-col items-center space-y-8 pt-24">
         <div className="flex flex-col items-center space-y-2">
           <img src={process.env.PUBLIC_URL + "/logo512.png"} alt="icygang logo" className="h-16 w-16" />
-          <h1 className="text-2xl text-white tracking-widest">浮水印產生器</h1>
+          <h1 className="text-2xl text-white tracking-widest">商品卡片產生器</h1>
         </div>
         <div className="p-3 border-gray-400 border-2 border-dashed rounded-lg w-80 h-28 flex justify-center items-center">
           {canvasPreview ? (
