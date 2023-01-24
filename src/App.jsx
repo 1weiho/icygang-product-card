@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import html2canvas from "html2canvas"
 
-const MyComponent = () => {
+const App = () => {
   const [imageUrl, setImageUrl] = useState("")
   const [canvasPreview, setCanvasPreview] = useState("")
   const [inputText, setInputText] = useState("⌨️ 點擊以編輯")
@@ -60,4 +60,4 @@ const MyComponent = () => {
   )
 }
 
-export default MyComponent
+export default App
