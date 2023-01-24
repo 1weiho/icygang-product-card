@@ -40,7 +40,7 @@ const App = () => {
           )}
         </div>
         <div ref={divRef}>
-          <div className="bg-white py-1 px-3 rounded-lg flex min-w-fit max-w-xs h-20 items-center space-x-3 overflow-hidden">
+          <div className="bg-white py-1 pl-3 rounded-lg flex min-w-fit max-w-xs h-20 items-center overflow-hidden">
             <input type="file" hidden ref={inputFileRef} accept="image/*" onChange={onImageChange} />
             <img
               src={imageUrl ? imageUrl : process.env.PUBLIC_URL + "/image/upload.png"}
@@ -48,7 +48,7 @@ const App = () => {
               className={imageUrl ? "h-full" : "h-2/3"}
               onClick={onImageUploadBtnClick}
             />
-            <div className="flex flex-col items-center w-full">
+            <div className="flex flex-col items-center w-full mx-6">
               <span className="font-semibold tracking-wider">ICYGANG</span>
               <span
                 contentEditable="true"
