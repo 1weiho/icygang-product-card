@@ -40,17 +40,24 @@ const App = () => {
           )}
         </div>
         <div ref={divRef}>
-          <div className="bg-white px-5 py-3 rounded-lg flex w-80 h-20 items-center space-x-4">
+          <div className="bg-white py-1 px-3 rounded-lg flex w-80 h-20 items-center space-x-3 overflow-hidden">
             <input type="file" hidden ref={inputFileRef} accept="image/*" onChange={onImageChange} />
             <img
               src={imageUrl ? imageUrl : process.env.PUBLIC_URL + "/image/upload.png"}
               alt="Product"
-              className="h-full"
+              className={imageUrl ? "h-full" : "h-2/3"}
               onClick={onImageUploadBtnClick}
             />
-            <span contentEditable="true" className="tracking-widest overflow-hidden" onClick={() => setInputText("")}>
-              {inputText}
-            </span>
+            <div className="flex flex-col items-center w-full">
+              <span className="font-semibold tracking-wider">ICYGANG</span>
+              <span
+                contentEditable="true"
+                className="font-normal tracking-wider text-gray-700 text-center leading-4 break-all"
+                onClick={() => setInputText("")}
+              >
+                {inputText}
+              </span>
+            </div>
           </div>
         </div>
         <button
