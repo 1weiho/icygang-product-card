@@ -63,7 +63,7 @@ const App = () => {
           )}
         </div>
         <div ref={divRef}>
-          <div className="bg-white dark:bg-slate-800 py-1 pl-3 rounded-lg flex min-w-fit max-w-xs h-20 items-center overflow-hidden">
+          <div className="bg-white dark:bg-slate-800 py-1 pl-3 rounded-lg flex max-w-xs h-20 items-center overflow-hidden">
             <input type="file" hidden ref={inputFileRef} accept="image/*" onChange={onImageChange} />
             <img
               src={imageUrl ? imageUrl : process.env.PUBLIC_URL + "/image/upload.png"}
