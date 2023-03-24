@@ -10,24 +10,27 @@ const App = () => {
   const divRef = useRef(null)
   const inputFileRef = useRef(null)
 
-  const handleExport = () => {
-    html2canvas(divRef.current, {
+  const drawCanvas = (screenshotCanvas) => {
+    let canvas = document.createElement("canvas")
+    let ctx = canvas.getContext("2d")
+    canvas.width = screenshotCanvas.width + 80
+    canvas.height = screenshotCanvas.height + 80
+    ctx.shadowBlur = 50
+    if (darkTheme === false) {
+      ctx.shadowColor = "rgba(255, 255, 255, 0.4)"
+    } else {
+      ctx.shadowColor = "rgba(0, 0, 0, 0.4)"
+    }
+    ctx.drawImage(screenshotCanvas, 40, 40)
+    const dataURL = canvas.toDataURL()
+    setCanvasPreview(dataURL)
+  }
+
+  const handleExport = async () => {
+    const screenshotCanvas = await html2canvas(divRef.current, {
       backgroundColor: null,
-    }).then((screenshotCanvas) => {
-      let canvas = document.createElement("canvas")
-      let ctx = canvas.getContext("2d")
-      canvas.width = screenshotCanvas.width + 80
-      canvas.height = screenshotCanvas.height + 80
-      ctx.shadowBlur = 50
-      if (darkTheme === false) {
-        ctx.shadowColor = "rgba(255, 255, 255, 0.4)"
-      } else {
-        ctx.shadowColor = "rgba(0, 0, 0, 0.4)"
-      }
-      ctx.drawImage(screenshotCanvas, 40, 40)
-      const dataURL = canvas.toDataURL()
-      setCanvasPreview(dataURL)
     })
+    drawCanvas(screenshotCanvas)
   }
 
   const handleTheme = () => {
