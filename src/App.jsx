@@ -84,12 +84,7 @@ const App = () => {
               onClick={onImageUploadBtnClick}
             />
             <div className="flex flex-col items-center w-full mx-6">
-              <span
-                className="font-semibold tracking-wider text-slate-900 dark:text-white"
-                onClick={handleStoreNameChange}
-              >
-                {storeName}
-              </span>
+              <span className="font-semibold tracking-wider text-slate-900 dark:text-white">{storeName}</span>
               <span
                 contentEditable="true"
                 className="font-normal tracking-wider text-slate-500 dark:text-slate-400 text-center leading-4 break-all"
@@ -102,16 +97,22 @@ const App = () => {
         </div>
         <div className="flex space-x-3">
           <button
+            onClick={handleTheme}
+            className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
+          >
+            切換顏色
+          </button>
+          <button
             onClick={handleExport}
             className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
           >
             產生圖片
           </button>
           <button
-            onClick={handleTheme}
+            onClick={handleStoreNameChange}
             className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
           >
-            切換顏色
+            切換商店
           </button>
         </div>
       </div>
