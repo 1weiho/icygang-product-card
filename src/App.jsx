@@ -6,6 +6,7 @@ const App = () => {
   const [canvasPreview, setCanvasPreview] = useState("")
   const [inputText, setInputText] = useState("⌨️ 點擊以編輯")
   const [darkTheme, setDarkTheme] = useState(false)
+  const [storeName, setStoreName] = useState("ICYGANG")
   const divRef = useRef(null)
   const inputFileRef = useRef(null)
 
@@ -48,6 +49,14 @@ const App = () => {
     inputFileRef.current.click()
   }
 
+  const handleStoreNameChange = () => {
+    if (storeName === "ICYGANG") {
+      setStoreName("ONLY4GOAT")
+    } else {
+      setStoreName("ICYGANG")
+    }
+  }
+
   return (
     <>
       <div className="h-screen w-screen bg-slate-100 dark:bg-slate-900 flex flex-col items-center space-y-8 pt-24">
@@ -72,7 +81,12 @@ const App = () => {
               onClick={onImageUploadBtnClick}
             />
             <div className="flex flex-col items-center w-full mx-6">
-              <span className="font-semibold tracking-wider text-slate-900 dark:text-white">ICYGANG</span>
+              <span
+                className="font-semibold tracking-wider text-slate-900 dark:text-white"
+                onClick={handleStoreNameChange}
+              >
+                {storeName}
+              </span>
               <span
                 contentEditable="true"
                 className="font-normal tracking-wider text-slate-500 dark:text-slate-400 text-center leading-4 break-all"
