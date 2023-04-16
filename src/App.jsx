@@ -15,7 +15,7 @@ const App = () => {
     let ctx = canvas.getContext("2d");
     canvas.width = screenshotCanvas.width + 200;
     canvas.height = screenshotCanvas.height + 200;
-    ctx.shadowBlur = 60;
+    ctx.shadowBlur = 80;
     // if (darkTheme === false) {
     //   ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
     // } else {
