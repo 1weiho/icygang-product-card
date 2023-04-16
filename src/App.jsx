@@ -13,8 +13,8 @@ const App = () => {
   const drawCanvas = (screenshotCanvas) => {
     let canvas = document.createElement("canvas");
     let ctx = canvas.getContext("2d");
-    canvas.width = screenshotCanvas.width + 80;
-    canvas.height = screenshotCanvas.height + 80;
+    canvas.width = screenshotCanvas.width + 200;
+    canvas.height = screenshotCanvas.height + 200;
     ctx.shadowBlur = 60;
     // if (darkTheme === false) {
     //   ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
@@ -22,7 +22,7 @@ const App = () => {
     //   ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
     // }
     ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
-    ctx.drawImage(screenshotCanvas, 40, 40);
+    ctx.drawImage(screenshotCanvas, 100, 100);
     const dataURL = canvas.toDataURL();
     setCanvasPreview(dataURL);
   };
@@ -73,7 +73,7 @@ const App = () => {
             商品卡片產生器
           </h1>
         </div>
-        <div className="p-3 border-gray-400 border-2 border-dashed rounded-lg w-80 h-28 flex justify-center items-center">
+        <div className="p-1 border-gray-400 border-2 border-dashed rounded-lg w-60 h-36 flex justify-center items-center">
           {canvasPreview ? (
             <img src={canvasPreview} alt="preview" className="max-h-full" />
           ) : (
@@ -83,7 +83,7 @@ const App = () => {
           )}
         </div>
         <div ref={divRef}>
-          <div className="bg-white dark:bg-slate-800 rounded-lg flex w-56 h-20 overflow-hidden">
+          <div className="bg-white dark:bg-slate-800 rounded-lg flex w-56 h-24 overflow-hidden">
             <input
               type="file"
               hidden
@@ -91,17 +91,17 @@ const App = () => {
               accept="image/*"
               onChange={onImageChange}
             />
-            <div
-              className="w-1/2 bg-cover bg-no-repeat bg-center"
-              onClick={onImageUploadBtnClick}
-              style={{
-                backgroundImage: `url(${
+            <div className="w-1/2 h-full overflow-y-hidden flex items-center" onClick={onImageUploadBtnClick}>
+              <img
+                src={
                   imageUrl
                     ? imageUrl
                     : process.env.PUBLIC_URL + "/image/upload.png"
-                })`,
-              }}
-            ></div>
+                }
+                alt="product"
+                className="w-full"
+              />
+            </div>
             <div className="w-1/2 h-full flex flex-col items-center justify-center px-2">
               <span className="font-semibold tracking-wider text-slate-900 dark:text-white">
                 {storeName}
