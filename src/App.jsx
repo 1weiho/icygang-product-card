@@ -1,93 +1,114 @@
-import { useRef, useState } from "react"
-import html2canvas from "html2canvas"
+import { useRef, useState } from "react";
+import html2canvas from "html2canvas";
 
 const App = () => {
-  const [imageUrl, setImageUrl] = useState("")
-  const [canvasPreview, setCanvasPreview] = useState("")
-  const [inputText, setInputText] = useState("⌨️ 點擊以編輯")
-  const [darkTheme, setDarkTheme] = useState(false)
-  const [storeName, setStoreName] = useState("ICYGANG")
-  const divRef = useRef(null)
-  const inputFileRef = useRef(null)
+  const [imageUrl, setImageUrl] = useState("");
+  const [canvasPreview, setCanvasPreview] = useState("");
+  const [inputText, setInputText] = useState("編輯");
+  const [darkTheme, setDarkTheme] = useState(false);
+  const [storeName, setStoreName] = useState("ICYGANG");
+  const divRef = useRef(null);
+  const inputFileRef = useRef(null);
 
   const drawCanvas = (screenshotCanvas) => {
-    let canvas = document.createElement("canvas")
-    let ctx = canvas.getContext("2d")
-    canvas.width = screenshotCanvas.width + 80
-    canvas.height = screenshotCanvas.height + 80
-    ctx.shadowBlur = 50
-    if (darkTheme === false) {
-      ctx.shadowColor = "rgba(255, 255, 255, 0.4)"
-    } else {
-      ctx.shadowColor = "rgba(0, 0, 0, 0.4)"
-    }
-    ctx.drawImage(screenshotCanvas, 40, 40)
-    const dataURL = canvas.toDataURL()
-    setCanvasPreview(dataURL)
-  }
+    let canvas = document.createElement("canvas");
+    let ctx = canvas.getContext("2d");
+    canvas.width = screenshotCanvas.width + 80;
+    canvas.height = screenshotCanvas.height + 80;
+    ctx.shadowBlur = 60;
+    // if (darkTheme === false) {
+    //   ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
+    // } else {
+    //   ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
+    // }
+    ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
+    ctx.drawImage(screenshotCanvas, 40, 40);
+    const dataURL = canvas.toDataURL();
+    setCanvasPreview(dataURL);
+  };
 
   const handleExport = async () => {
     const screenshotCanvas = await html2canvas(divRef.current, {
       backgroundColor: null,
-    })
-    drawCanvas(screenshotCanvas)
-  }
+    });
+    drawCanvas(screenshotCanvas);
+  };
 
   const handleTheme = () => {
     if (darkTheme === false) {
-      document.documentElement.classList.add("dark")
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark")
+      document.documentElement.classList.remove("dark");
     }
-    setDarkTheme(!darkTheme)
+    setDarkTheme(!darkTheme);
     // FIXME: handleExport() use the old `darkTheme` state to set the shadow color.
-    handleExport()
-  }
+  };
 
   const onImageChange = (e) => {
-    setImageUrl(URL.createObjectURL(e.target.files[0]))
-  }
+    setImageUrl(URL.createObjectURL(e.target.files[0]));
+  };
 
   const onImageUploadBtnClick = () => {
-    inputFileRef.current.click()
-  }
+    inputFileRef.current.click();
+  };
 
   const handleStoreNameChange = () => {
     if (storeName === "ICYGANG") {
-      setStoreName("ONLY4GOAT")
+      setStoreName("ONLY4GOAT");
     } else {
-      setStoreName("ICYGANG")
+      setStoreName("ICYGANG");
     }
-  }
+  };
 
   return (
     <>
-      <div className="h-screen w-screen bg-slate-100 dark:bg-slate-900 flex flex-col items-center space-y-8 pt-24">
+      <div className="h-screen w-screen bg-slate-100 flex flex-col items-center space-y-8 pt-24">
         <div className="flex flex-col items-center space-y-2">
-          <img src={process.env.PUBLIC_URL + "/logo512.png"} alt="icygang logo" className="h-16 w-16" />
-          <h1 className="text-2xl text-slate-900 dark:text-white tracking-widest">商品卡片產生器</h1>
+          <img
+            src={process.env.PUBLIC_URL + "/logo512.png"}
+            alt="icygang logo"
+            className="h-16 w-16"
+          />
+          <h1 className="text-2xl text-slate-900 tracking-widest">
+            商品卡片產生器
+          </h1>
         </div>
         <div className="p-3 border-gray-400 border-2 border-dashed rounded-lg w-80 h-28 flex justify-center items-center">
           {canvasPreview ? (
             <img src={canvasPreview} alt="preview" className="max-h-full" />
           ) : (
-            <span className="text-gray-400 text-sm tracking-widest">圖片預覽區</span>
+            <span className="text-gray-400 text-sm tracking-widest">
+              圖片預覽區
+            </span>
           )}
         </div>
         <div ref={divRef}>
-          <div className="bg-white dark:bg-slate-800 py-1 pl-3 rounded-lg flex max-w-xs h-20 items-center overflow-hidden">
-            <input type="file" hidden ref={inputFileRef} accept="image/*" onChange={onImageChange} />
-            <img
-              src={imageUrl ? imageUrl : process.env.PUBLIC_URL + "/image/upload.png"}
-              alt="Product"
-              className={imageUrl ? "h-full" : "h-2/3"}
-              onClick={onImageUploadBtnClick}
+          <div className="bg-white dark:bg-slate-800 rounded-lg flex w-56 h-20 overflow-hidden">
+            <input
+              type="file"
+              hidden
+              ref={inputFileRef}
+              accept="image/*"
+              onChange={onImageChange}
             />
-            <div className="flex flex-col items-center w-full mx-6">
-              <span className="font-semibold tracking-wider text-slate-900 dark:text-white">{storeName}</span>
+            <div
+              className="w-1/2 bg-cover bg-no-repeat bg-center"
+              onClick={onImageUploadBtnClick}
+              style={{
+                backgroundImage: `url(${
+                  imageUrl
+                    ? imageUrl
+                    : process.env.PUBLIC_URL + "/image/upload.png"
+                })`,
+              }}
+            ></div>
+            <div className="w-1/2 h-full flex flex-col items-center justify-center px-2">
+              <span className="font-semibold tracking-wider text-slate-900 dark:text-white">
+                {storeName}
+              </span>
               <span
                 contentEditable="true"
-                className="font-normal tracking-wider text-slate-500 dark:text-slate-400 text-center leading-4 break-all"
+                className="font-normal tracking-wider text-slate-900 dark:text-slate-200 text-center leading-4 break-all text-sm"
                 onClick={() => setInputText("")}
               >
                 {inputText}
@@ -98,26 +119,26 @@ const App = () => {
         <div className="flex space-x-3">
           <button
             onClick={handleTheme}
-            className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
+            className="border-slate-500 border-2 rounded-lg px-3 py-2 text-slate-500 tracking-widest hover:bg-slate-500  hover:text-white  duration-300"
           >
             切換顏色
           </button>
           <button
             onClick={handleExport}
-            className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
+            className="border-slate-500 border-2 rounded-lg px-3 py-2 text-slate-500 tracking-widest hover:bg-slate-500  hover:text-white dark:hover:text-slate-500 duration-300"
           >
             產生圖片
           </button>
           <button
             onClick={handleStoreNameChange}
-            className="border-slate-500 dark:border-white border-2 rounded-lg px-3 py-2 text-slate-500 dark:text-white tracking-widest hover:bg-slate-500 dark:hover:bg-white hover:text-white dark:hover:text-slate-500 duration-300"
+            className="border-slate-500 border-2 rounded-lg px-3 py-2 text-slate-500 tracking-widest hover:bg-slate-500  hover:text-white dark:hover:text-slate-500 duration-300"
           >
             切換商店
           </button>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
